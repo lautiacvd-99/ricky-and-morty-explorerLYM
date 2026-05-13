@@ -70,4 +70,3 @@ export function showError(message) {
 export function clearCards() {
   if (grid) grid.innerHTML = "";
 }
-62
