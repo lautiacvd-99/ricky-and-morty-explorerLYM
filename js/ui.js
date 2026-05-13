@@ -21,17 +21,17 @@ export function renderCard(character) {
   card.innerHTML = `
     <img class="card__img" src="${image}" alt="Foto de ${name}" loading="lazy" />
     <div class="card__body">
-      <h2 class="card__name">${name}</h2>
+      <h2 class="card__name"> nombre: ${name}</h2>
       <span class="card__status ${statusClass}">
         <span class="card__status-dot"></span>
-        ${status} — ${species}
+        ${status} — especie :${species}
       </span>
       <dl class="card__info">
-        <dt>Género</dt>
+        <dt>Género:</dt>
         <dd>${gender}</dd>
-        <dt>Origen</dt>
+        <dt>Origen:</dt>
         <dd>${origin.name}</dd>
-        <dt>Última ubicación</dt>
+        <dt>Última ubicación:</dt>
         <dd>${location.name}</dd>
       </dl>
     </div>
