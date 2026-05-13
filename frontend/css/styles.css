@@ -219,7 +219,7 @@ button { cursor: pointer; font-family: var(--font-body); border: none; backgroun
 /* ── Grid de personajes ──────────────────────────────────── */
 
 .characters-section {
-  padding: var(--space-xl) var(--space-md);
+  padding: var(--space-1g) var(--space-md);
   max-width: 1300px;
   margin: 0 auto;
   min-height: 400px;
