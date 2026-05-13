@@ -56,7 +56,6 @@ export function hideLoader() {
  
 /**
  * Muestra un mensaje de error en pantalla.
- * @
  */
 export function showError(message) {
   if (!errorMsg) return;
@@ -69,4 +68,43 @@ export function showError(message) {
  */
 export function clearCards() {
   if (grid) grid.innerHTML = "";
+}
+
+/**
+ * Actualiza los botones de paginación y el indicador de página.
+ */
+export function updatePagination(currentPage, totalPages) {
+  const btnPrev = document.getElementById("btn-prev");
+  const btnNext = document.getElementById("btn-next");
+  const currentPageEl = document.getElementById("current-page");
+  const totalPagesEl = document.getElementById("total-pages");
+ 
+  if (currentPageEl) currentPageEl.textContent = currentPage;
+  if (totalPagesEl) totalPagesEl.textContent = totalPages;
+ 
+  if (btnPrev) btnPrev.disabled = currentPage <= 1;
+  if (btnNext) btnNext.disabled = currentPage >= totalPages;
+}
+ 
+/**
+ * Muestra un mensaje de estado en la pantalla.
+ */
+export function showStatus(message) {
+  const statusMsg = document.getElementById("status-message");
+  const statusText = document.getElementById("status-text");
+  
+  if (statusMsg && statusText) {
+    statusText.textContent = message;
+    statusMsg.hidden = false;
+  }
+}
+ 
+/**
+ * Oculta el mensaje de estado.
+ */
+export function hideStatus() {
+  const statusMsg = document.getElementById("status-message");
+  if (statusMsg) {
+    statusMsg.hidden = true;
+  }
 }
