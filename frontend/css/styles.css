@@ -1,0 +1,630 @@
+
+
+:root {
+  /* Paleta principal — verde portal */
+  --color-bg:          #0b0f14;
+  --color-surface:     #111820;
+  --color-surface-2:   #1a2433;
+  --color-border:      #1f3048;
+
+  --color-primary:     #39ff14;   /* verde neón portal */
+  --color-primary-dim: #1a7a00;
+  --color-accent:      #00cfff;   /* azul portal */
+  --color-accent-dim:  #005a80;
+
+  --color-text:        #e8f4e8;
+  --color-text-muted:  #7a9a8a;
+  --color-text-dark:   #2a3a2a;
+
+  /* Estados */
+  --color-alive:       #39ff14;
+  --color-dead:        #ff3a3a;
+  --color-unknown:     #888888;
+
+  /* Tipografía */
+  --font-display:      'Bangers', cursive;
+  --font-body:         'Nunito', sans-serif;
+
+  /* Espaciado */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  40px;
+  --space-2xl: 64px;
+
+  /* Bordes y radios */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  /* Sombras */
+  --shadow-card:   0 4px 24px rgba(0,0,0,0.5);
+  --shadow-glow:   0 0 12px rgba(57,255,20,0.25);
+  --shadow-hover:  0 8px 32px rgba(0,0,0,0.7), 0 0 20px rgba(57,255,20,0.3);
+
+  /* Transiciones */
+  --transition: 0.2s ease;
+}
+
+/* Reset mínimo */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+  /* Textura sutil de ruido de fondo */
+  background-image:
+    radial-gradient(ellipse at 20% 10%, rgba(57,255,20,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 90%, rgba(0,207,255,0.04) 0%, transparent 60%);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--color-primary);
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-body);
+  border: none;
+  background: none;
+}
+
+
+/* ================================================
+   2. BOTONES (reutilizables)
+================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: 10px 22px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  transition: background var(--transition), color var(--transition),
+              box-shadow var(--transition), transform var(--transition);
+}
+
+.btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Botón primario — buscar */
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-text-dark);
+  box-shadow: 0 0 10px rgba(57,255,20,0.4);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #50ff30;
+  box-shadow: 0 0 18px rgba(57,255,20,0.65);
+  transform: translateY(-1px);
+}
+
+/* Botón secundario — limpiar */
+.btn-secondary {
+  background: transparent;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  border-color: var(--color-text-muted);
+  color: var(--color-text);
+  transform: translateY(-1px);
+}
+
+/* Botones de paginación */
+.btn-page {
+  background: var(--color-surface-2);
+  color: var(--color-accent);
+  border: 1px solid var(--color-border);
+  padding: 10px 28px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+.btn-page:hover:not(:disabled) {
+  background: var(--color-accent-dim);
+  box-shadow: 0 0 14px rgba(0,207,255,0.3);
+  transform: translateY(-1px);
+}
+
+
+/* ================================================
+   3. HEADER
+================================================ */
+
+.site-header {
+  background: linear-gradient(180deg, #0a1a10 0%, var(--color-bg) 100%);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-xl) var(--space-md) var(--space-lg);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Línea decorativa neón arriba */
+.site-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+  box-shadow: 0 0 12px var(--color-primary);
+}
+
+.header-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.site-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-sm);
+}
+
+/* Cada parte del título con su color */
+.title-rick {
+  color: var(--color-primary);
+  text-shadow: 0 0 20px rgba(57,255,20,0.6);
+}
+
+.title-amp {
+  color: var(--color-text-muted);
+  margin: 0 8px;
+}
+
+.title-morty {
+  color: var(--color-accent);
+  text-shadow: 0 0 20px rgba(0,207,255,0.6);
+}
+
+.title-sub {
+  display: block;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  color: var(--color-text-muted);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-top: -4px;
+}
+
+.site-subtitle {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  margin-top: var(--space-xs);
+}
+
+
+/* ================================================
+   4. FILTROS
+================================================ */
+
+.filters-section {
+  padding: var(--space-lg) var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.filters-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  align-items: flex-end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  flex: 1 1 160px;
+}
+
+.filter-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+}
+
+.filter-input,
+.filter-select {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  padding: 9px 12px;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.filter-select {
+  /* Flecha personalizada */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237a9a8a'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+  cursor: pointer;
+}
+
+.filter-input:focus,
+.filter-select:focus {
+  border-color: var(--color-primary-dim);
+  box-shadow: 0 0 0 3px rgba(57,255,20,0.1);
+}
+
+.filter-input::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.6;
+}
+
+.filter-input:focus::placeholder {
+  opacity: 0.3;
+}
+
+/* Los botones de acción se alinean al final */
+.filters-inner > .btn {
+  flex: 0 0 auto;
+  align-self: flex-end;
+}
+
+
+/* ================================================
+   5. SECCIÓN DE PERSONAJES
+================================================ */
+
+.characters-section {
+  padding: var(--space-xl) var(--space-md);
+  max-width: 1300px;
+  margin: 0 auto;
+  min-height: 400px;
+}
+
+/* Grid responsivo */
+.characters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-lg);
+}
+
+
+/* ================================================
+   6. CARDS DE PERSONAJES
+   (Esta estructura la genera ui.js dinámicamente)
+================================================ */
+
+.character-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition), box-shadow var(--transition),
+              border-color var(--transition);
+  cursor: default;
+
+  /* Animación de entrada (se aplica al insertar desde JS) */
+  animation: fadeInUp 0.35s ease both;
+}
+
+.character-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--color-primary-dim);
+}
+
+/* Imagen de la card */
+.card-image-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--color-surface-2);
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.character-card:hover .card-image {
+  transform: scale(1.06);
+}
+
+/* Cuerpo de la card */
+.card-body {
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.card-name {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.3;
+
+  /* Cortar nombre largo con ellipsis */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Fila de estado: punto de color + texto */
+.card-status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.card-origin {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-label {
+  color: var(--color-text-muted);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+
+/* ================================================
+   7. BADGES / DOTS DE ESTADO
+================================================ */
+
+.status-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Verde — Alive */
+.status-alive {
+  background-color: var(--color-alive);
+  box-shadow: 0 0 6px var(--color-alive);
+}
+
+/* Rojo — Dead */
+.status-dead {
+  background-color: var(--color-dead);
+  box-shadow: 0 0 6px var(--color-dead);
+}
+
+/* Gris — Unknown */
+.status-unknown {
+  background-color: var(--color-unknown);
+}
+
+
+/* ================================================
+   8. PAGINACIÓN
+================================================ */
+
+.pagination-section {
+  padding: var(--space-lg) var(--space-md) var(--space-2xl);
+  border-top: 1px solid var(--color-border);
+}
+
+.pagination-inner {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-lg);
+}
+
+.page-indicator {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  text-align: center;
+  min-width: 120px;
+}
+
+.page-indicator strong {
+  color: var(--color-text);
+}
+
+
+/* ================================================
+   9. MENSAJES DE ESTADO (cargando / error / vacío)
+   Controlados por ui.js vía atributo hidden
+================================================ */
+
+.status-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  min-height: 280px;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Cuando js/ui.js quita el atributo hidden, se muestra */
+.status-message[hidden] {
+  display: none;
+}
+
+/* Spinner de carga (se activa con clase .loading en ui.js) */
+.status-message.loading::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+
+/* ================================================
+   10. FOOTER
+================================================ */
+
+.site-footer {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-lg) var(--space-md);
+  text-align: center;
+}
+
+.footer-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.footer-credits,
+.footer-authors {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+
+/* ================================================
+   11. ANIMACIONES
+================================================ */
+
+/* Cards aparecen de abajo con fade */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Spinner de carga */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Delay escalonado para las cards (hasta 10 cards con delay) */
+.character-card:nth-child(1)  { animation-delay: 0.00s; }
+.character-card:nth-child(2)  { animation-delay: 0.04s; }
+.character-card:nth-child(3)  { animation-delay: 0.08s; }
+.character-card:nth-child(4)  { animation-delay: 0.12s; }
+.character-card:nth-child(5)  { animation-delay: 0.16s; }
+.character-card:nth-child(6)  { animation-delay: 0.20s; }
+.character-card:nth-child(7)  { animation-delay: 0.24s; }
+.character-card:nth-child(8)  { animation-delay: 0.28s; }
+.character-card:nth-child(9)  { animation-delay: 0.32s; }
+.character-card:nth-child(10) { animation-delay: 0.36s; }
+
+
+/* ================================================
+   12. RESPONSIVE — MOBILE (≤ 600px)
+================================================ */
+
+@media (max-width: 600px) {
+
+  /* Header más compacto */
+  .site-header {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  /* Filtros en columna completa */
+  .filters-inner {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .filter-group {
+    flex: 1 1 100%;
+  }
+
+  .filters-inner > .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Grid de 1 columna en mobile */
+  .characters-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  /* Paginación apilada */
+  .pagination-inner {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .btn-page {
+    width: 100%;
+  }
+}
+
+/* Tablet: 2 columnas */
+@media (min-width: 601px) and (max-width: 900px) {
+  .characters-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
