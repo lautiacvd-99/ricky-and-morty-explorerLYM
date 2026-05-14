@@ -165,6 +165,7 @@ button { cursor: pointer; font-family: var(--font-body); border: none; backgroun
 /* ── Filtros ─────────────────────────────────────────────── */
 
 .filters-section {
+  align-items: center;
   padding: var(--space-lg) var(--space-md);
   border-bottom: 1px solid var(--color-border);
   background: var(--color-surface);
@@ -418,8 +419,9 @@ button { cursor: pointer; font-family: var(--font-body); border: none; backgroun
 
 @media (max-width: 600px) {
   .site-header { padding: var(--space-lg) var(--space-md); }
-  .filters-inner { flex-direction: column; gap: var(--space-sm); }
+  .filters-inner { flex-direction: column; align-items: center; gap: var(--space-sm); }
   .filter-group { flex: 1 1 100%; }
+  .filter-label { text-align: center;}
   .filters-inner > .btn { width: 100%; justify-content: center; }
   .characters-grid { grid-template-columns: 1fr; gap: var(--space-md); }
   .pagination-inner { flex-direction: column; gap: var(--space-md); }
