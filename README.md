@@ -6,7 +6,6 @@ Integrantes
 Acevedo, Lautaro
 Canello, Manuel
 Oliver, Matias
-Canello, Manuel
 
 
 Tecnologías Utilizadas
