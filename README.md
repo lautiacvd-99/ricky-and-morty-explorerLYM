@@ -5,6 +5,7 @@ La aplicación consume datos en tiempo real de la Rick and Morty API, ofreciendo
 Integrantes
 Acevedo, Lautaro
 Oliver, Matias
+Canello, Manuel
 
 Tecnologías Utilizadas
 Frontend
